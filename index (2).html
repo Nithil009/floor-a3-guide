@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floor A3 — Welcome Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-hero: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+  --space-12: 3rem; --space-16: 4rem;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --radius-xl: 1rem; --radius-full: 9999px;
+  --nav-h: 56px;
+  --transition: 180ms cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="dark"] {
+  --bg: #141312; --surface: #1c1b19; --surface-2: #222120; --surface-off: #2a2927;
+  --border: #333230; --divider: #2a2927;
+  --text: #d4d3d1; --text-muted: #7a7876; --text-faint: #4e4d4b; --text-inv: #141312;
+  --primary: #4f98a3; --primary-light: #1e3133; --primary-hl: #2a4547;
+  --amber: #e0a832; --amber-light: #2e2518;
+  --red: #d46060; --red-light: #2e1a1a;
+  --blue: #5591c7; --blue-light: #1a2a3a;
+  --green: #6daa45; --green-light: #1e2e18;
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 4px 16px oklch(0 0 0 / 0.4);
+}
+[data-theme="light"] {
+  --bg: #f7f6f2; --surface: #ffffff; --surface-2: #f3f0ec; --surface-off: #ebe8e3;
+  --border: #d8d5d0; --divider: #e5e2dd;
+  --text: #28251d; --text-muted: #7a7974; --text-faint: #bab9b4; --text-inv: #f9f8f5;
+  --primary: #01696f; --primary-light: #e0eeef; --primary-hl: #cedcd8;
+  --amber: #a06b00; --amber-light: #fdf3dc;
+  --red: #c0392b; --red-light: #fdecea;
+  --blue: #006494; --blue-light: #e0eef8;
+  --green: #437a22; --green-light: #eaf3e2;
+  --shadow-sm: 0 1px 3px oklch(0.2 0.01 80 / 0.06);
+  --shadow-md: 0 4px 16px oklch(0.2 0.01 80 / 0.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 8px);-webkit-text-size-adjust:none;text-size-adjust:none}
+body{font-family:var(--font-body);font-size:var(--text-base);color:var(--text);background:var(--bg);min-height:100dvh;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{text-wrap:balance;line-height:1.15}
+p,li{text-wrap:pretty;max-width:72ch}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 var(--space-4);gap:var(--space-3);}
+.nav-logo{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-display);font-size:var(--text-base);font-weight:600;white-space:nowrap;flex-shrink:0;text-decoration:none;color:var(--text);}
+.nav-logo svg{flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:var(--space-1);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;padding:var(--space-1) 0;}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{flex-shrink:0;font-size:var(--text-xs);font-weight:500;color:var(--text-muted);text-decoration:none;padding:var(--space-1) var(--space-2);border-radius:var(--radius-full);white-space:nowrap;transition:color var(--transition),background var(--transition);}
+.nav-links a:hover,.nav-links a[aria-current="true"]{color:var(--primary);background:var(--primary-light)}
+.nav-right{flex-shrink:0;margin-left:auto}
+.theme-btn{width:36px;height:36px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:background var(--transition),color var(--transition);}
+.theme-btn:hover{background:var(--surface-off);color:var(--text)}
+
+/* LAYOUT */
+.container{max-width:860px;margin-inline:auto;padding-inline:var(--space-4)}
+.section{padding-block:clamp(var(--space-10),6vw,var(--space-16));border-bottom:1px solid var(--divider)}
+.section:last-of-type{border-bottom:none}
+
+/* HERO */
+.hero{padding-block:clamp(var(--space-10),8vw,var(--space-16));text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);background:var(--primary-light);border:1px solid var(--primary-hl);border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600;color:var(--primary);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:var(--space-6)}
+.hero h1{font-family:var(--font-display);font-size:var(--text-hero);color:var(--text);margin-bottom:var(--space-4)}
+.hero h1 em{color:var(--primary);font-style:italic}
+.hero-sub{font-size:var(--text-base);color:var(--text-muted);max-width:52ch;margin-inline:auto;margin-bottom:var(--space-8)}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2)}
+.stat-pill{display:inline-flex;align-items:center;gap:var(--space-1);padding:var(--space-1) var(--space-3);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-full);font-size:var(--text-xs);color:var(--text-muted)}
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-6)}
+.section-icon{width:48px;height:48px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.section-label{font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:var(--space-1)}
+.section-title{font-family:var(--font-display);font-size:var(--text-xl);color:var(--text)}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm)}
+.card+.card{margin-top:var(--space-3)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+
+/* RULE ITEMS */
+.rule-item{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-4);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);border-left:3px solid var(--border);margin-bottom:var(--space-3)}
+.rule-item.do{border-left-color:var(--green)}
+.rule-item.dont{border-left-color:var(--red)}
+.rule-item.note{border-left-color:var(--amber)}
+.rule-item.info{border-left-color:var(--blue)}
+.ri-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px;min-width:1.4rem}
+.rule-item p,.rule-item div{font-size:var(--text-sm);max-width:none}
+
+/* HIGHLIGHT BOX */
+.hbox{display:flex;align-items:flex-start;gap:var(--space-3);padding:var(--space-4);border-radius:var(--radius-lg);border:1px solid transparent;margin-bottom:var(--space-3)}
+.hbox-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.hbox-title{font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1)}
+.hbox-body{font-size:var(--text-sm);color:var(--text-muted)}
+
+/* WASTE GRID */
+.waste-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:var(--space-3);margin-bottom:var(--space-6)}
+.wcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4)}
+.wcard-icon{font-size:1.5rem;margin-bottom:var(--space-2)}
+.wcard-title{font-size:var(--text-sm);font-weight:700;margin-bottom:var(--space-1)}
+.wcard-desc{font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--space-3);line-height:1.5}
+.wcard-bin{font-size:var(--text-xs);font-weight:600}
+
+/* DUTY FLOW */
+.duty-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-2);text-align:center;margin-bottom:var(--space-6)}
+@media(max-width:480px){.duty-flow{grid-template-columns:1fr 1fr}}
+.df-step{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
+.df-num{width:36px;height:36px;border-radius:var(--radius-full);background:var(--primary-light);border:2px solid var(--primary);color:var(--primary);font-size:var(--text-sm);font-weight:700;display:flex;align-items:center;justify-content:center}
+.df-text{font-size:var(--text-xs);color:var(--text-muted);line-height:1.4}
+.df-text em{font-style:italic}
+
+/* CONSUMABLES GRID */
+.cons-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(140px,100%),1fr));gap:var(--space-3);margin-bottom:var(--space-4)}
+.cons-item{display:flex;align-items:center;gap:var(--space-3);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:var(--text-sm)}
+
+/* SURVIVAL TIPS */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:var(--space-3)}
+.tip{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);font-size:var(--text-sm)}
+.tip-emoji{font-size:1.4rem;margin-bottom:var(--space-2)}
+.tip-text{color:var(--text-muted);font-size:var(--text-xs)}
+
+/* IMG SLOT */
+.img-slot{border:2px dashed var(--border);border-radius:var(--radius-lg);padding:var(--space-8);text-align:center;cursor:pointer;transition:border-color var(--transition);margin-top:var(--space-6);position:relative;overflow:hidden}
+.img-slot:hover{border-color:var(--primary)}
+.img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-slot-label{font-size:var(--text-sm);color:var(--text-faint)}
+.img-slot img{display:none;width:100%;border-radius:var(--radius-md);max-height:300px;object-fit:cover}
+
+/* JUMP CARDS */
+.jump-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,100%),1fr));gap:var(--space-3);margin-top:var(--space-6)}
+.jump-card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:var(--space-4);text-decoration:none;transition:border-color var(--transition),box-shadow var(--transition)}
+.jump-card:hover{border-color:var(--primary);box-shadow:var(--shadow-md)}
+.jump-card-icon{font-size:1.4rem;margin-bottom:var(--space-2)}
+.jump-card-title{font-size:var(--text-sm);font-weight:700;color:var(--text);margin-bottom:var(--space-1)}
+.jump-card-desc{font-size:var(--text-xs);color:var(--text-muted);line-height:1.4}
+
+/* UTILS */
+.mb-3{margin-bottom:var(--space-3)}.mb-4{margin-bottom:var(--space-4)}.mb-6{margin-bottom:var(--space-6)}.mt-4{margin-top:var(--space-4)}.mt-6{margin-top:var(--space-6)}.mt-8{margin-top:var(--space-8)}
+.text-muted{color:var(--text-muted);font-size:var(--text-sm)}
+.bold{font-weight:700}
+.subheading{font-family:var(--font-display);font-size:var(--text-lg);color:var(--text);margin-bottom:var(--space-4);margin-top:var(--space-8)}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <a href="#top" class="nav-logo" aria-label="Floor A3 Home">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Floor A3</span>
+  </a>
+  <div class="nav-links" role="list">
+    <a href="#kitchen" role="listitem">🍳 Kitchen</a>
+    <a href="#waste" role="listitem">♻️ Waste</a>
+    <a href="#duties" role="listitem">📋 Duties</a>
+    <a href="#laundry" role="listitem">🧺 Laundry</a>
+    <a href="#bathroom" role="listitem">🚿 Bathroom</a>
+    <a href="#common" role="listitem">🛋️ Common</a>
+    <a href="#rules" role="listitem">📌 Rules</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" data-theme-toggle aria-label="Switch theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="top" class="hero container">
+  <div class="hero-badge">🏢 Hadiko · K1 Building · Block A · 3rd Floor</div>
+  <h1>Welcome to<br><em>Floor A3</em></h1>
+  <p class="hero-sub">Your quick guide to living comfortably with 15 awesome neighbours. Read this once — it'll save you a lot of confusion.</p>
+  <div class="hero-stats">
+    <span class="stat-pill">🏠 15 Rooms</span>
+    <span class="stat-pill">🚿 2 Washrooms</span>
+    <span class="stat-pill">🛁 2 Bathrooms</span>
+    <span class="stat-pill">🍳 1 Shared Kitchen</span>
+    <span class="stat-pill">🌿 1 Balcony</span>
+    <span class="stat-pill">🛋️ 1 Living Room</span>
+  </div>
+  <div class="jump-grid" role="list">
+    <a href="#kitchen" class="jump-card" role="listitem"><div class="jump-card-icon">🍳</div><div class="jump-card-title">Kitchen Rules</div><div class="jump-card-desc">Cleanliness, fridge, storage &amp; shared appliances</div></a>
+    <a href="#waste" class="jump-card" role="listitem"><div class="jump-card-icon">♻️</div><div class="jump-card-title">Waste Sorting</div><div class="jump-card-desc">Bio, plastic, paper, glass &amp; cardboard</div></a>
+    <a href="#duties" class="jump-card" role="listitem"><div class="jump-card-icon">📋</div><div class="jump-card-title">Weekly Duties</div><div class="jump-card-desc">The door sign system &amp; what each duty means</div></a>
+    <a href="#laundry" class="jump-card" role="listitem"><div class="jump-card-icon">🧺</div><div class="jump-card-title">Laundry Room</div><div class="jump-card-desc">Washing machine, dryer &amp; cloth washing</div></a>
+    <a href="#bathroom" class="jump-card" role="listitem"><div class="jump-card-icon">🚿</div><div class="jump-card-title">Bathrooms</div><div class="jump-card-desc">Shower etiquette &amp; toilet tips</div></a>
+    <a href="#common" class="jump-card" role="listitem"><div class="jump-card-icon">🛋️</div><div class="jump-card-title">Common Spaces</div><div class="jump-card-desc">Living room, balcony &amp; hallway rules</div></a>
+    <a href="#rules" class="jump-card" role="listitem"><div class="jump-card-icon">📌</div><div class="jump-card-title">Important Notes</div><div class="jump-card-desc">Radio tax, 5€ rule &amp; group chat</div></a>
+  </div>
+</div>
+
+<!-- SECTION 01: KITCHEN -->
+<section id="kitchen" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--amber-light);color:var(--amber)">🍳</div>
+      <div><div class="section-label" style="color:var(--amber)">Section 01</div><h2 class="section-title">Kitchen Rules</h2></div>
+    </div>
+
+    <div class="hbox mb-4" style="background:var(--amber-light);border-color:oklch(from var(--amber) l c h / 0.3)">
+      <div class="hbox-icon">⭐</div>
+      <div><div class="hbox-title" style="color:var(--amber)">Golden Rule</div><div class="hbox-body">The kitchen must be kept <strong>extremely clean</strong> at all times. Clean up immediately after yourself — do not leave anything behind.</div></div>
+    </div>
+
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div><strong>No dishes left in the drying area overnight</strong> — and no "quick parking" on the counter. The 5€ rule is in effect: unidentified items left behind = 5€ fee.</div></div>
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div><strong>No wet vessels in the shelves.</strong> Dry everything with the dish cloth before putting it away. Moisture damages the shelves.</div></div>
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div><strong>Never leave the sink clogged</strong> after washing dishes. Clean the drain every time.</div></div>
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div><strong>Never leave food or items in the kitchen</strong> after you're done eating. Take your food back to your room.</div></div>
+    <div class="rule-item note"><span class="ri-icon">⚠️</span><div><strong>If you break a glass</strong> — stop, carefully clean all shards, and inform the group chat immediately so others know to be careful.</div></div>
+
+    <h3 class="subheading">🔧 Shared Appliances</h3>
+    <div class="two-col mb-6">
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm)">🏠 Available for everyone:</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li style="font-size:var(--text-sm)">🍞 Toaster</li>
+          <li style="font-size:var(--text-sm)">☕ Kettle</li>
+          <li style="font-size:var(--text-sm)">🔥 Oven</li>
+          <li style="font-size:var(--text-sm)">❄️ Fridge (shared + mini)</li>
+          <li style="font-size:var(--text-sm)">🧴 Towels / cloths</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm)">📦 Also in the kitchen:</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li style="font-size:var(--text-sm)">🍴 Common utensils (keep clean!)</li>
+          <li style="font-size:var(--text-sm)">📦 Per-room storage boxes on the shelf</li>
+          <li style="font-size:var(--text-sm)">🗄️ Cupboard opposite fridge — use with name/room label</li>
+          <li style="font-size:var(--text-sm)">📋 Duty board on the wall</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="subheading">🧴 Shared Consumables</h3>
+    <p class="text-muted mb-4">These are stocked for everyone. Replenished via the <strong>shopping duty</strong> — check the board checklist.</p>
+    <div class="cons-grid">
+      <div class="cons-item"><span style="font-size:1.2rem">🧂</span><span>Salt</span></div>
+      <div class="cons-item"><span style="font-size:1.2rem">🧽</span><span>Kitchen sponges</span></div>
+      <div class="cons-item"><span style="font-size:1.2rem">🧻</span><span>Tissues / paper towels</span></div>
+      <div class="cons-item"><span style="font-size:1.2rem">🫧</span><span>Dish washing gel</span></div>
+      <div class="cons-item"><span style="font-size:1.2rem">🪣</span><span>Scrubs / scourers</span></div>
+    </div>
+    <div class="rule-item info mt-4"><span class="ri-icon">🛒</span><div>If any item is running low (below 2–3 units), the person on <strong>shopping duty</strong> buys them. Keep your receipt — the finance handler reimburses you.</div></div>
+
+    <h3 class="subheading">❄️ Fridge Organisation</h3>
+    <p class="text-muted mb-4">Every room gets a dedicated spot. Write your <strong>room number</strong> on anything you store.</p>
+    <div class="two-col">
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm);color:var(--primary)">🧊 Mini Fridges</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted)">Each mini fridge is divided among a few rooms. Your shelf is labelled with your room number.</p>
+      </div>
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm);color:var(--primary)">🏪 Main Shared Fridge</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted)">Store your items in the section labelled with your room number. Keep it tidy and don't overflow into others' space.</p>
+      </div>
+    </div>
+
+    <div class="img-slot mt-6" id="kitchen-img-slot" title="Click to add kitchen photo">
+      <input type="file" accept="image/*" onchange="handleImg(this,'kitchen-img-slot')" aria-label="Add kitchen photo">
+      <div class="img-slot-label">📷 <em>Tap to add a photo of the kitchen / fridge</em></div>
+      <img alt="Kitchen photo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: WASTE -->
+<section id="waste" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--green-light);color:var(--green)">♻️</div>
+      <div><div class="section-label" style="color:var(--green)">Section 02</div><h2 class="section-title">Waste Sorting</h2></div>
+    </div>
+    <p class="text-muted mb-6">Please sort waste carefully and place it in the correct bin.</p>
+
+    <div class="two-col mb-4">
+      <div class="hbox" style="background:var(--primary-light);border-color:var(--primary-hl)">
+        <div class="hbox-icon">🧑‍🤝‍🧑</div>
+        <div><div class="hbox-title" style="color:var(--primary)">Everyone's job</div><div class="hbox-body">When throwing waste in the kitchen, <strong>put it in the right labelled bin</strong>. Sort at the point of disposal — not later.</div></div>
+      </div>
+      <div class="hbox" style="background:var(--amber-light);border-color:oklch(from var(--amber) l c h / 0.3)">
+        <div class="hbox-icon">🗑️</div>
+        <div><div class="hbox-title" style="color:var(--amber)">Waste duty person</div><div class="hbox-body">When a bin is full, take it to the dumping yard and empty it into the <strong>correct container</strong>. Bring your transponder. Also empty the <strong>washroom bins</strong>.</div></div>
+      </div>
+    </div>
+
+    <div class="rule-item dont mb-6"><span class="ri-icon">📹</span><div>There is a <strong>camera in the dumping yard</strong>. Wrong disposal can lead to <strong>fines</strong>. Always sort correctly.</div></div>
+
+    <h3 class="subheading" style="margin-top:0">Which bin for what?</h3>
+    <div class="waste-grid">
+      <div class="wcard" style="background:var(--amber-light);border-color:oklch(from var(--amber) l c h / 0.25)">
+        <div class="wcard-icon">🟤</div>
+        <div class="wcard-title" style="color:var(--amber)">Bio Waste</div>
+        <div class="wcard-desc">Food scraps, peels, coffee grounds, eggshells</div>
+        <div class="wcard-bin" style="color:var(--amber)">🗑️ Bio container</div>
+      </div>
+      <div class="wcard" style="background:var(--primary-light)">
+        <div class="wcard-icon">🟡</div>
+        <div class="wcard-title" style="color:var(--primary)">Plastic &amp; Metal</div>
+        <div class="wcard-desc">Packaging, cans, foil, tins</div>
+        <div class="wcard-bin" style="color:var(--primary)">🗑️ Wertstoff container</div>
+      </div>
+      <div class="wcard">
+        <div class="wcard-icon">⚫</div>
+        <div class="wcard-title">Restmüll</div>
+        <div class="wcard-desc">Everything else — mixed non-recyclable waste</div>
+        <div class="wcard-bin">🗑️ Restmüll container</div>
+      </div>
+      <div class="wcard" style="background:var(--blue-light)">
+        <div class="wcard-icon">🍾</div>
+        <div class="wcard-title" style="color:var(--blue)">Glass</div>
+        <div class="wcard-desc">Bottles and glass jars</div>
+        <div class="wcard-bin" style="color:var(--blue)">🗑️ Outside ~15 steps</div>
+      </div>
+      <div class="wcard" style="background:var(--red-light)">
+        <div class="wcard-icon">📦</div>
+        <div class="wcard-title" style="color:var(--red)">Cardboard</div>
+        <div class="wcard-desc">Flatten boxes before disposing</div>
+        <div class="wcard-bin" style="color:var(--red)">🗑️ Outside ~15 steps</div>
+      </div>
+    </div>
+
+    <div class="hbox" style="background:var(--surface);border-color:var(--border)">
+      <div class="hbox-icon">📍</div>
+      <div><div class="hbox-title">Where are the containers?</div><div class="hbox-body">Bio, Plastic &amp; Restmüll are in the <strong>dumping yard</strong> (basement — needs transponder). Glass &amp; Cardboard bins are <strong>outside, ~15 steps</strong> from the dumping yard entrance.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: DUTIES -->
+<section id="duties" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--primary-light);color:var(--primary)">📋</div>
+      <div><div class="section-label" style="color:var(--primary)">Section 03</div><h2 class="section-title">Weekly Duties</h2></div>
+    </div>
+    <p class="text-muted mb-6">Each duty rotates weekly via a door sign. It's a simple system — just follow the sign.</p>
+
+    <div class="duty-flow mb-6">
+      <div class="df-step"><div class="df-num">1</div><div class="df-text">Sign appears on <em>your</em> door</div></div>
+      <div class="df-step"><div class="df-num">2</div><div class="df-text">Read the back for instructions</div></div>
+      <div class="df-step"><div class="df-num">3</div><div class="df-text">Complete the duty this week</div></div>
+      <div class="df-step"><div class="df-num">4</div><div class="df-text">Pass the sign to the next room</div></div>
+    </div>
+
+    <div class="rule-item note mb-6"><span class="ri-icon">🏖️</span><div><strong>Going away for 2+ days?</strong> Put the "Absent" sign on your door so the duty skips you that week.</div></div>
+
+    <h3 class="subheading" style="margin-top:0">What each duty involves</h3>
+
+    <div class="rule-item" style="border-left-color:var(--red)"><span class="ri-icon">🗑️</span><div><strong>Waste Duty —</strong> Empty all dustbins on the floor — including <strong>kitchen and washroom bins</strong> — and take bags to the dumping yard. Sort into the correct containers. Bring your transponder! Leave bins empty and clean.<div style="margin-top:var(--space-2);display:flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);background:var(--red-light);border-radius:var(--radius-md);font-size:var(--text-xs);color:var(--red)"><span>📹</span><span><strong>Note:</strong> Camera in the yard. Wrong disposal = fines. Sort carefully every time.</span></div></div></div>
+
+    <div class="rule-item" style="border-left-color:var(--primary)"><span class="ri-icon">🛒</span><div><strong>Shopping Duty —</strong> Check the board checklist. If any shared item (e.g. salt, sponges) is below the required quantity (usually 2–3 packs), buy it. Keep your receipt — the finance handler will reimburse you.</div></div>
+
+    <div class="rule-item" style="border-left-color:var(--blue)"><span class="ri-icon">🧺</span><div><strong>Kitchen Cloth Washing —</strong> Collect used kitchen cloths from the <em>used tub</em> in the living room and wash them in the washing machine. Once clean and dry, place them back in the <em>fresh tub</em>. There are 3 types: hand towel, dish-drying cloth, and surface cloth — refresh all three.</div></div>
+  </div>
+</section>
+
+<!-- SECTION 04: LAUNDRY -->
+<section id="laundry" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-light);color:var(--blue)">🧺</div>
+      <div><div class="section-label" style="color:var(--blue)">Section 04</div><h2 class="section-title">Laundry Room</h2></div>
+    </div>
+
+    <div class="two-col mb-6">
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm);color:var(--blue)">🫧 Washing Machine</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li style="font-size:var(--text-sm)">Label your detergent with your room number and keep it on the rack</li>
+          <li style="font-size:var(--text-sm)">No shared detergent — bring your own</li>
+          <li style="font-size:var(--text-sm)">Take full responsibility for your laundry — a fault can affect everyone</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm);color:var(--blue)">💨 Dryer</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li style="font-size:var(--text-sm)">After every use, <strong>clean the dust filter</strong></li>
+          <li style="font-size:var(--text-sm)"><strong>Empty the water tank</strong> after every use</li>
+          <li style="font-size:var(--text-sm)">Instructions are written on the dryer — ask a floormate if unsure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule-item note"><span class="ri-icon">🧺</span><div><strong>Kitchen Cloth System:</strong> There are two labelled tubs in the living room — a <em>fresh tub</em> and a <em>used tub</em>. Grab cloths from fresh, drop them in used when done. The person on cloth-washing duty launders them weekly. <strong>3 types:</strong> hand towel, dish-drying cloth, surface cloth.</div></div>
+  </div>
+</section>
+
+<!-- SECTION 05: BATHROOM -->
+<section id="bathroom" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--primary-light);color:var(--primary)">🚿</div>
+      <div><div class="section-label" style="color:var(--primary)">Section 05</div><h2 class="section-title">Bathrooms &amp; Toilets</h2></div>
+    </div>
+    <p class="text-muted mb-6">We have 2 shared washrooms and 2 shared bathrooms. Keep them clean for everyone.</p>
+
+    <div class="rule-item do"><span class="ri-icon">🚿</span><div><strong>After your shower</strong> — rinse the shower area using the pipe/hose provided. Wipe away any hair, soap residue or gunk. Leave it as you found it (or better).</div></div>
+    <div class="rule-item do"><span class="ri-icon">🚽</span><div><strong>Toilet flush tip:</strong> The flush isn't very strong. If needed, use the bucket nearby as a <strong>power flush</strong> — fill with water and pour in forcefully to push everything through.</div></div>
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div><strong>Never leave the toilet clogged</strong> without informing the group. Write in the group chat if there's a blockage you can't fix.</div></div>
+
+    <div class="hbox mt-4" style="background:var(--red-light);border-color:oklch(from var(--red) l c h / 0.3)">
+      <div class="hbox-icon">🚰</div>
+      <div>
+        <div class="hbox-title" style="color:var(--red)">Keep the shower pipe facing INSIDE</div>
+        <div class="hbox-body">After your shower, use the pipe/hose inside the bathroom to rinse the floor clean. <strong>Always make sure the nozzle faces inward into the bathroom.</strong> If left pointing toward the open area and accidentally turned on, water will flood the middle area — there is no drain there to handle it.</div>
+      </div>
+    </div>
+
+    <div class="img-slot mt-6" id="bathroom-img-slot" title="Click to add bathroom photo">
+      <input type="file" accept="image/*" onchange="handleImg(this,'bathroom-img-slot')" aria-label="Add bathroom photo">
+      <div class="img-slot-label">📷 <em>Tap to add a photo of the bathrooms / toilet</em></div>
+      <img alt="Bathroom photo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: COMMON SPACES -->
+<section id="common" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--blue-light);color:var(--blue)">🛋️</div>
+      <div><div class="section-label" style="color:var(--blue)">Section 06</div><h2 class="section-title">Common Spaces</h2></div>
+    </div>
+
+    <div class="two-col mb-6">
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm)">🛋️ Living Room</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li style="font-size:var(--text-sm)">📺 TV area — for everyone's use</li>
+          <li style="font-size:var(--text-sm)">🧺 Fresh &amp; Used cloth tubs are here (labelled)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="bold mb-3" style="font-size:var(--text-sm)">🌿 Balcony</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted)">Open to everyone — chill &amp; relax</p>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-2)">Keep it tidy when you're done</p>
+      </div>
+    </div>
+
+    <div class="hbox mb-4" style="background:var(--surface);border-color:var(--border)">
+      <div class="hbox-icon">🚶</div>
+      <div>
+        <div class="hbox-title">Keep the hallway clear</div>
+        <div class="hbox-body">The Hausmeister has specifically asked that the hallway stays free to walk through — especially on cleaning days. Don't leave clothes dryers, shoe racks, or personal items in the hallway. <strong>The cleaning lady needs clear access.</strong></div>
+      </div>
+    </div>
+
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div>No clothes drying racks or stands in the hallway.</div></div>
+    <div class="rule-item dont"><span class="ri-icon">❌</span><div>Don't leave too many shoes outside your room. Keep it compact.</div></div>
+    <div class="rule-item note"><span class="ri-icon">🎉</span><div><strong>Inviting friends?</strong> That's totally fine! But if it's a big group (10+ people), please give a heads-up in the group chat beforehand so your floormates can plan their cooking.</div></div>
+  </div>
+</section>
+
+<!-- SECTION 07: RULES & NOTES -->
+<section id="rules" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--red-light);color:var(--red)">📌</div>
+      <div><div class="section-label" style="color:var(--red)">Section 07</div><h2 class="section-title">Important Notes</h2></div>
+    </div>
+
+    <h3 class="subheading" style="margin-top:0">💶 The 5€ Rule</h3>
+    <div class="hbox mb-6" style="background:var(--red-light);border-color:oklch(from var(--red) l c h / 0.3)">
+      <div class="hbox-icon">💶</div>
+      <div><div class="hbox-title" style="color:var(--red)">Kitchen items left unattended = 5€ fee</div><div class="hbox-body">If you leave your dishes or belongings in the kitchen without a good reason and the owner can be identified, a <strong>5€ fine</strong> applies. This rule was introduced because things escalated badly in the past. Just wash and put away your stuff — it takes 3 minutes.</div></div>
+    </div>
+
+    <h3 class="subheading">💬 Group Chat Etiquette</h3>
+    <div class="rule-item info"><span class="ri-icon">💬</span><div>Report broken items, clogged toilets or anything that needs fixing in the group chat immediately.</div></div>
+    <div class="rule-item info"><span class="ri-icon">🤝</span><div>Need to borrow something? Just ask in the group — we're all here to help each other.</div></div>
+    <div class="rule-item info"><span class="ri-icon">📣</span><div>Announce large gatherings in the group beforehand so your floormates can plan their cooking.</div></div>
+    <div class="rule-item info"><span class="ri-icon">😊</span><div>We're a friendly floor. Don't be afraid to knock on doors or ask questions — everyone was new once.</div></div>
+
+    <h3 class="subheading">📺 Radio &amp; TV Tax (Rundfunkbeitrag)</h3>
+    <div class="rule-item note"><span class="ri-icon">📺</span><div>You may receive a letter about the broadcasting fee (Rundfunkbeitrag). As of now, one of our ex-residents has been paying it. Reference if needed: <strong>Beitragsnummer 678847315</strong> — Name: Marc Wipfler. Check with the floor group if this is still active.</div></div>
+  </div>
+</section>
+
+<!-- QUICK SURVIVAL TIPS -->
+<section style="padding:clamp(var(--space-10),6vw,var(--space-16)) 0;background:var(--surface)">
+  <div class="container">
+    <h2 class="section-title mb-4">⚡ Quick Survival Tips</h2>
+    <p class="text-muted mb-6">The most important things to remember on day one.</p>
+    <div class="tips-grid">
+      <div class="tip"><div class="tip-emoji">🗝️</div><strong>Carry your transponder</strong><p class="tip-text">You'll need it for the dumping yard during trash duty.</p></div>
+      <div class="tip"><div class="tip-emoji">🏷️</div><strong>Label your fridge space</strong><p class="tip-text">Write your room number on everything you store.</p></div>
+      <div class="tip"><div class="tip-emoji">✈️</div><strong>Going away?</strong><p class="tip-text">Put the "Absent" sign on your door to skip duties.</p></div>
+      <div class="tip"><div class="tip-emoji">🧽</div><strong>Dry before shelving</strong><p class="tip-text">No wet dishes in the shelf — ever.</p></div>
+      <div class="tip"><div class="tip-emoji">🚰</div><strong>Pipe faces inward</strong><p class="tip-text">Always keep the shower pipe nozzle pointing inside the bathroom.</p></div>
+      <div class="tip"><div class="tip-emoji">💬</div><strong>Use the group chat</strong><p class="tip-text">For broken things, big gatherings or borrowing anything.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:var(--space-8) var(--space-4);text-align:center;border-top:1px solid var(--divider)">
+  <p style="font-size:var(--text-xs);color:var(--text-faint)">Floor A3 · Hadiko K1 · Last updated May 2026</p>
+</footer>
+
+<script>
+// Theme toggle
+(function(){
+  const btn=document.querySelector('[data-theme-toggle]');
+  const root=document.documentElement;
+  let theme=root.getAttribute('data-theme')||'dark';
+  function setTheme(t){theme=t;root.setAttribute('data-theme',t);if(btn)btn.innerHTML=t==='dark'?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';}
+  setTheme(theme);
+  if(btn)btn.addEventListener('click',()=>setTheme(theme==='dark'?'light':'dark'));
+})();
+
+// Nav highlight
+(function(){
+  const links=document.querySelectorAll('.nav-links a');
+  const sections=document.querySelectorAll('section[id]');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>{l.removeAttribute('aria-current');l.style.background='';l.style.color='';});
+        const a=document.querySelector('.nav-links a[href="#'+e.target.id+'"]');
+        if(a){a.setAttribute('aria-current','true');}
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+})();
+
+// Image upload handler
+function handleImg(input, slotId) {
+  const slot = document.getElementById(slotId);
+  const img = slot.querySelector('img');
+  const label = slot.querySelector('.img-slot-label');
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => { img.src = e.target.result; img.style.display = 'block'; label.style.display = 'none'; };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
+</body>
+</html>
